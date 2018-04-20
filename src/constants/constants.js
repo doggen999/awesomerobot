@@ -1,0 +1,12 @@
+export const configurationConstants = {
+    CONFIG_LANGUAGE:'CONFIG_LANGUAGE',
+    CONFIG_SHAPE: 'CONFIG_SHAPE',
+    CONFIG_WIDTH: 'CONFIG_WIDTH',
+    CONFIG_HEIGHT: 'CONFIG_HEIGHT',
+    CONFIG_RADIUS: 'CONFIG_RADIUS',
+    CONFIG_STARTPOS: 'CONFIG_STARTPOS',
+}
+
+export const navigationConstants = {
+    NAVIGATE: 'NAVIGATE',
+}

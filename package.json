@@ -1,21 +1,37 @@
 {
-  "name": "",
-  "dependencies": {},
-  "version": "",
-  "scripts": {
-    "build": "webpack",
-    "test": "jest"
-  },
-  "jest":{
-    "transform":{"\/.jsx?$/": "./node_modules/webpack-babel-jest"}, 
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "jest": "^22.4.3",
-    "webpack": "^4.6.0",
-    "webpack-babel-jest": "^1.0.4",
-    "webpack-cli": "^2.0.14"
-  }
+    "name": "",
+    "dependencies": {
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
+        "react-redux": "^5.0.7",
+        "redux": "^4.0.0"
+    },
+    "version": "",
+    "scripts": {
+        "build": "webpack ",
+        "build:watch": "webpack --watch",
+        "test": "jest --verbose",
+        "test:watch": "jest --watch",
+        "server": "http-server dist",
+        "server:dev":"webpack-dev-server --content-base dist/"
+    },
+    "jest": {
+        "transform": {
+            ".jsx?$": "<rootDir>/node_modules/babel-jest"
+        }
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-jest": "^22.4.3",
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "jest": "^22.4.3",
+        "jest-babel": "^1.0.1",
+        "jest-cli": "^22.4.3",
+        "webpack": "^4.6.0",
+        "webpack-babel-jest": "^1.0.4",
+        "webpack-cli": "^2.0.14",
+        "webpack-dev-server": "^3.1.3"
+    }
 }
