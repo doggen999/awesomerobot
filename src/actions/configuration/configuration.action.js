@@ -1,5 +1,4 @@
-import {configurationConstants} from '../constants/constants';
-
+import { configurationConstants } from '../../constants'
 
 export const configLanguage = lang => ({
     type: configurationConstants.CONFIG_LANGUAGE,
