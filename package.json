@@ -16,6 +16,9 @@
         "server:dev": "webpack-dev-server --content-base dist/"
     },
     "jest": {
+        "moduleNameMapper": {
+            "^config$": "<rootDir>/webpack.config.js"
+        },
         "transform": {
             ".jsx?$": "<rootDir>/node_modules/babel-jest"
         }
