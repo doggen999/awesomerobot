@@ -8,5 +8,7 @@ export const configurationConstants = {
 }
 
 export const navigationConstants = {
-    NAVIGATE: 'NAVIGATE',
+  NAVIGATE_INPROGRESS: 'NAVIGATE_INPROGRESS',
+  NAVIGATE_FULFILLED: 'NAVIGATE_FULFILLED',
+  NAVIGATE_ERROR: 'NAVIGATE_ERROR'
 }

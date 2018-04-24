@@ -1,7 +1,57 @@
-import * as actions from './navigation.action'
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import {navigate, modGrad} from './navigation.action'
+import {navigationConstants} from '../../constants'
 
-describe('navigator actions', () => {
-    it('should return positioning string', () => {
-        expect(1).toEqual(1)
+const mockStore = configureStore([thunk])
+
+describe('navigation', () => {
+  let store
+
+  beforeEach(() => {
+    store = mockStore({
+      navigationReducer: {
+        destination: {
+          x: 0, y: 0, dir: 0
+        }
+      },
+      configurationReducer: {
+        lang: 'se'
+      }
     })
+  })
+
+  it('should return positive grad values', () => {
+    expect(modGrad(-90)).toEqual(270)
+    expect(modGrad(-180)).toEqual(180)
+    expect(modGrad(-270)).toEqual(90)
+    expect(modGrad(-360)).toEqual(0)
+  })
+
+  it('should return error with incorrect instructions', () => {
+    return store.dispatch(navigate('ABC'))
+      .then(() => {
+      }, () => {
+        const storeActions = store.getActions()
+        expect(storeActions[0]).toEqual({type: navigationConstants.NAVIGATE_ERROR, payload: 'ABC'})
+      })
+  })
+  it('should return navigate_success with position', () => {
+    return store.dispatch(navigate('GGG'))
+      .then(() => {
+        return store.dispatch(navigate('VGHG'))
+      })
+      .then(() => {
+        const storeActions = store.getActions()
+        expect(storeActions[0]).toEqual({type: navigationConstants.NAVIGATE_FULFILLED, payload: {x: 0, y: 3, dir: 0}})
+        expect(storeActions[1]).toEqual({type: navigationConstants.NAVIGATE_FULFILLED, payload: {x: -1, y: 1, dir: 0}})
+      })
+  })
+  it('should return navigate_fulfilled with position with english instructions', () => {
+    store = mockStore({navigationReducer: {destination: {x: 0, y: 0, dir: 0}}, configurationReducer: {lang: 'en'}})
+    store.dispatch(navigate('LFRRF')).then(() => {
+      const storeActions = store.getActions()
+      expect(storeActions[0]).toEqual({type: navigationConstants.NAVIGATE_FULFILLED, payload: {x: 0, y: 0, dir: 90}})
+    })
+  })
 })
