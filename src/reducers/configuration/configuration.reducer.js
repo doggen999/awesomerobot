@@ -1,7 +1,7 @@
 import {configurationConstants} from '../../constants/constants'
 
-const initialStated = []
-export const configurationReducer = (state = initialStated, action) => {
+const initialState = []
+export const configurationReducer = (state = initialState, action) => {
   switch (action.type) {
     case configurationConstants.CONFIG_LANGUAGE:
       return [...state, { lang: action.lang }]
@@ -13,8 +13,6 @@ export const configurationReducer = (state = initialStated, action) => {
       return [...state, {height: action.height}]
     case configurationConstants.CONFIG_RADIUS:
       return [...state, {radius: action.radius}]
-    case configurationConstants.CONFIG_STARTPOS:
-      return [...state, {startPos: action.startPos}]
     default:
       return state
   }

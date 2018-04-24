@@ -19,6 +19,10 @@ export function modGrad (val) {
   return ((((val) % 360) + 360) % 360)
 }
 
+export function setPos (pos) {
+  return ({type: navigationConstants.SET_POS, destination: {...pos, dir: 0}})
+}
+
 const translateInstructions = (instructions, lang) => {
   switch (lang.toLowerCase()) {
     case 'se':
