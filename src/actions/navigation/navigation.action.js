@@ -42,9 +42,9 @@ const recursiveNavigation = (instructions, destination) => {
     case 'F':
       destination = translatePosition(destination)
       break
-    case 'L': destination = [...destination, {dir: modGrad(destination.dir - 90)}]
+    case 'L': destination = Object.assign({}, destination, {dir: modGrad(destination.dir - 90)})
       break
-    case 'R': destination = [...destination, {dir: modGrad(destination.dir + 90)}]
+    case 'R': destination = Object.assign({}, destination, {dir: modGrad(destination.dir + 90)})
       break
   }
   return (Promise.resolve(recursiveNavigation(instructions.slice(1), destination)))
@@ -53,12 +53,12 @@ const recursiveNavigation = (instructions, destination) => {
 const translatePosition = (destination) => {
   switch (destination.dir) {
     case 0:
-      return [...destination, {y: destination.y + 1}]
+      return Object.assign({}, destination, {y: destination.y + 1})
     case 90:
-      return [...destination, {x: destination.x + 1}]
+      return Object.assign({}, destination, {x: destination.x + 1})
     case 180:
-      return [...destination, {y: destination.y - 1}]
+      return Object.assign({}, destination, {y: destination.y -1})
     case 270:
-      return [...destination, {x: destination.x - 1}]
+      return Object.assign({}, destination, {x: destination.x - 1})
   }
 }

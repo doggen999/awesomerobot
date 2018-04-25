@@ -71,7 +71,7 @@ describe('navigation', () => {
     })
   })
 
-  it('should', () => {
+  it('should return set_pos with configured start pos', () => {
     expect(setPos({x: 1, y: 2})).toEqual({type: navigationConstants.SET_POS, destination: {x: 1, y: 2, dir: 0}})
   })
 })

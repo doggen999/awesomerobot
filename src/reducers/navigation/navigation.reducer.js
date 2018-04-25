@@ -1,5 +1,5 @@
 import {navigationConstants} from '../../constants'
-const intialState = []
+const intialState = [{destination: {x: 0, y: 0, dir: 0}}]
 
 export const navigationReducer = (state = intialState, action) => {
   switch (action.type) {
