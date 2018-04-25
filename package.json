@@ -1,5 +1,5 @@
 {
-    "name": "Awesome robot",
+    "name": "Awesome-robot",
     "repository": {
             "type":"git",
             "url":"https://github.com/doggen999/awesomerobot"
