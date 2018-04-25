@@ -5,7 +5,7 @@ export function navigate (instructions) {
     let translatedInstructions = translateInstructions(instructions, getState().configurationReducer.lang)
 
     if (translatedInstructions.toUpperCase().replace(new RegExp('L*R*F*', 'g'), '').length > 0) {
-      return Promise.reject(new Error(dispatch({type: navigationConstants.NAVIGATE_ERROR, payload: instructions})))
+      return Promise.resolve(dispatch({type: navigationConstants.NAVIGATE_ERROR}))
     }
 
     return Promise.resolve(recursiveNavigation(translatedInstructions, getState().navigationReducer.destination))
@@ -19,8 +19,12 @@ export function modGrad (val) {
   return ((((val) % 360) + 360) % 360)
 }
 
-export function setPos (pos) {
-  return ({type: navigationConstants.SET_POS, destination: {x: pos.x, y: pos.y, dir: 0}})
+export function setXPos (x) {
+  return ({type: navigationConstants.SET_XPOS, x})
+}
+
+export function setYPos (y) {
+  return ({type: navigationConstants.SET_YPOS, y})
 }
 
 const translateInstructions = (instructions, lang) => {
@@ -53,11 +57,11 @@ const recursiveNavigation = (instructions, destination) => {
 const translatePosition = (destination) => {
   switch (destination.dir) {
     case 0:
-      return Object.assign({}, destination, {y: destination.y + 1})
+      return Object.assign({}, destination, {y: +destination.y + 1})
     case 90:
-      return Object.assign({}, destination, {x: destination.x + 1})
+      return Object.assign({}, destination, {x: +destination.x + 1})
     case 180:
-      return Object.assign({}, destination, {y: destination.y -1})
+      return Object.assign({}, destination, {y: destination.y - 1})
     case 270:
       return Object.assign({}, destination, {x: destination.x - 1})
   }

@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import {navigate, modGrad, setPos} from './navigation.action'
+import {navigate, modGrad, setYPos, setXPos} from './navigation.action'
 import {navigationConstants} from '../../constants'
 
 const mockStore = configureStore([thunk])
@@ -72,6 +72,7 @@ describe('navigation', () => {
   })
 
   it('should return set_pos with configured start pos', () => {
-    expect(setPos({x: 1, y: 2})).toEqual({type: navigationConstants.SET_POS, destination: {x: 1, y: 2, dir: 0}})
+    expect(setXPos(3)).toEqual({type: navigationConstants.SET_XPOS, x: 3})
+    expect(setYPos(5)).toEqual({type: navigationConstants.SET_YPOS, y: 5})
   })
 })
